@@ -58,6 +58,7 @@ public class Location {
     private String serviceType;
 
     public Location() {
+        this.unitInfo = null;
     }
 
     @JsonCreator

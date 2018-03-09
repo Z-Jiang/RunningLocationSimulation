@@ -11,9 +11,7 @@ import javax.persistence.Embeddable;
 public class UnitInfo {
 
     private String runningId;
-
     private String bandMake;
-
     private String customerName;
     private String unitNumber;
 

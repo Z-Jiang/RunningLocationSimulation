@@ -1,5 +1,8 @@
 package demo;
 
+import demo.domain.SupplyLocation;
+import demo.domain.SupplyLocationRepository;
+import demo.service.SupplyLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +18,12 @@ import java.util.List;
 public class SupplyLocationBulkUploadController {
 
     private SupplyLocationRepository repository;
+    private SupplyLocationService service;
 
     @Autowired
-    public SupplyLocationBulkUploadController(SupplyLocationRepository repository) {
+    public SupplyLocationBulkUploadController(SupplyLocationRepository repository, SupplyLocationService service) {
         this.repository = repository;
+        this.service = service;
 
     }
 
@@ -29,8 +34,8 @@ public class SupplyLocationBulkUploadController {
     }
 
     @RequestMapping(value = "/purge", method = RequestMethod.POST)
-    public void purge() {
-        this.repository.deleteAll();
+    public List<SupplyLocation> uploadFilteredLocations(List<SupplyLocation> locations){
+        return this.service.saveSupplyLocationsZipContains30339(locations);
     }
 
 }
